@@ -35,5 +35,19 @@ module.exports = {
             },
         ],
     },
-    plugins: [new FaviconWebpackPlugin("./public/favicon.png")],
+    plugins: [
+        new FaviconWebpackPlugin({
+            logo: "./public/favicon.png",
+            favicons: {
+                android: true,
+                appleIcon: true,
+                appleStartup: true,
+                coast: false,
+                favicons: true,
+                firefox: false,
+                windows: false,
+                yandex: false,
+            },
+        }),
+    ],
 };

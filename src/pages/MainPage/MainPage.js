@@ -5,7 +5,6 @@ import WordsContext from "./../../context/wordsContext/words.context";
 
 const MainPage = () => {
     const WordList = useContext(WordsContext);
-    console.log(WordList);
     return (
         <MainPageWrapper>
             {WordList.terms.map((term, i) => (

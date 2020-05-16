@@ -18,12 +18,7 @@ module.exports = merge(common, {
             {
                 test: /\.(sass|scss)$/,
                 exclude: /node_modules/,
-                use: [
-                    "style-loader", //Injects CSS code into DOM
-                    "css-loader", //Turns CSS code into commonJS code
-                    "sass-loader", //Turn SASS code into CSS code
-                ],
-                //IMPORTANT: webpack "use" works from the very end of our array 1.sass 2.css 3.style loader
+                use: ["style-loader", "css-loader", "sass-loader"],
             },
         ],
     },
