@@ -1,16 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import GlobalStyle from "./globalStyle.styles";
 import MainPage from "../pages/MainPage/MainPage";
-import WordContext from "./../context/wordsContext/words.context";
-import wordsData from "./../data/words.json";
+import WordsContext from "./../context/wordsContext/words.context";
 
 class App extends Component {
     render() {
         return (
-            <WordContext.Provider value={wordsData}>
-                <GlobalStyle />
-                <MainPage />
-            </WordContext.Provider>
+            <WordsContext.Consumer>
+                {({ voices }) => {
+                    if (voices.length) {
+                        return (
+                            <>
+                                <GlobalStyle />
+                                <MainPage />
+                            </>
+                        );
+                    } else {
+                        return (
+                            <>
+                                <GlobalStyle />
+                                <h1>Loading...</h1>
+                            </>
+                        );
+                    }
+                }}
+            </WordsContext.Consumer>
         );
     }
 }

@@ -6,6 +6,20 @@ const flexCentered = css`
     align-items: center;
 `;
 
+const SpeakerIcon = styled.div`
+    background-image: url(${({ speakerIcon }) => speakerIcon ? speakerIcon : ""});
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    transition: 0.5s;
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+`;
+
 const CardsContainer = styled.div`
     width: 100%;
     height: 200px;
@@ -15,6 +29,10 @@ const CardsContainer = styled.div`
     border-radius: 30px;
     cursor: pointer;
     ${({ rotatedCards }) => (rotatedCards ? rotateCards() : "")};
+
+    &:hover ${SpeakerIcon} {
+        opacity: 1;
+    }
 
     @keyframes rotate {
         from {
@@ -43,9 +61,11 @@ function getCardColor(reversed) {
 }
 
 const CardStyles = css`
+    position: relative;
     width: 100%;
     height: 100%;
     border-radius: 30px;
+    padding:10px;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition: .5s;
@@ -57,13 +77,11 @@ const CardStyles = css`
 `;
 
 const FrontCard = styled.div`
-    ${flexCentered};
     ${CardStyles};
     transform: translate(-50%, -50%) rotateY(0deg);
 `;
 
 const BackCard = styled.div`
-    ${flexCentered};
     ${CardStyles};
     transform: translate(-50%, -50%) rotateY(180deg);
 `;
@@ -78,4 +96,4 @@ const Word = styled.p`
     font-size: 28px;
 `;
 
-export { CardsContainer, Word, FrontCard, BackCard };
+export { CardsContainer, Word, FrontCard, BackCard, SpeakerIcon };

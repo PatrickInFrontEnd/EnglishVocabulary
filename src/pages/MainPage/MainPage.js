@@ -4,10 +4,11 @@ import MainPageWrapper from "./MainPage.styles";
 import WordsContext from "./../../context/wordsContext/words.context";
 
 const MainPage = () => {
-    const WordList = useContext(WordsContext);
+    const { words } = useContext(WordsContext);
+
     return (
         <MainPageWrapper>
-            {WordList.terms.map((term, i) => (
+            {words.map((term, i) => (
                 <WordComponent key={i} word={term} />
             ))}
             ;

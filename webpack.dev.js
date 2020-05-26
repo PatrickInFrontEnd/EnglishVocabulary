@@ -2,6 +2,8 @@ const path = require("path");
 const common = require("./webpack.common");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
+const port = 5050;
 
 module.exports = merge(common, {
     mode: "development",
@@ -11,7 +13,7 @@ module.exports = merge(common, {
     },
     stats: "errors-warnings",
     devServer: {
-        port: 5050,
+        port,
     },
     module: {
         rules: [
@@ -26,6 +28,11 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             template: "./public/template.html",
             filename: "./index.html",
+        }),
+        new BrowserSyncPlugin({
+            host: "localhost",
+            port: 3000,
+            proxy: `http://localhost:${port}`,
         }),
     ],
 });

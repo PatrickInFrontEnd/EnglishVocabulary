@@ -7,6 +7,14 @@ const MainPageWrapper = styled.div`
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+    @media screen and (max-width: 1120px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    @media screen and (max-width: 560px) {
+        padding: 10px 30px;
+    }
 `;
 
 export default MainPageWrapper;
