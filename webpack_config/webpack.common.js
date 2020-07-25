@@ -39,11 +39,11 @@ module.exports = {
         new FaviconWebpackPlugin({
             logo: "./public/favicon.png",
             favicons: {
-                android: true,
-                appleIcon: true,
-                appleStartup: true,
+                android: false,
+                appleIcon: false,
+                appleStartup: false,
                 coast: false,
-                favicons: true,
+                favicons: false,
                 firefox: false,
                 windows: false,
                 yandex: false,
