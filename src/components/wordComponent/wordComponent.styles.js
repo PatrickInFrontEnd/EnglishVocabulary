@@ -90,6 +90,10 @@ const Word = styled.p`
     color: ${({ reversed }) => getWordColor(reversed)};
     font-weight: bold;
     font-size: 28px;
+
+    @media screen and (max-width: 450px) {
+        font-size: 24px;
+    }
 `;
 
 export { CardsContainer, Word, FrontCard, BackCard, SpeakerIcon };

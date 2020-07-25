@@ -11,11 +11,20 @@ const Header = styled.header`
     font-weight: bold;
     text-align: center;
     ${flexCenter}
+
+    @media screen and (max-width: 450px) {
+        font-size: 20px;
+    }
 `;
 
 const HeaderImg = styled.img`
-    width: 50px;
+    width: 90px;
     height: 100%;
+
+    @media screen and (max-width: 450px) {
+        width: 60px;
+        height: 40px;
+    }
 `;
 
 const HeaderTitle = styled.h1`
