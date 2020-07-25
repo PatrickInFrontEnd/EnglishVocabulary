@@ -10,41 +10,44 @@ import Icon from "./../../assets/speaker.png";
 import WordsContext from "./../../context/wordsContext/words.context";
 
 const WordComponent = ({ word: { term, def } }) => {
-    const [rotatedCards, setRotation] = useState(false);
+    const [isRotated, setRotation] = useState(false);
     const { playText, voices, setSpeechVoice } = useContext(WordsContext);
 
-    const toggleRotation = () => {
-        setRotation(!rotatedCards);
+    const toggleRotation = () => setRotation(!isRotated);
+
+    const handleSpeakerClick = (e, { voiceName, wordToSpeech = "" }) => {
+        if (e.type !== "click") return;
+        e.stopPropagation();
+        setSpeechVoice(voices, voiceName || undefined);
+        playText(wordToSpeech);
     };
 
     return (
         <CardsContainer
-            rotatedCards={rotatedCards}
-            onClick={() => toggleRotation()}
-            onMouseLeave={() => rotatedCards && toggleRotation()}
+            rotated={isRotated}
+            onClick={toggleRotation}
+            onMouseLeave={() => isRotated && toggleRotation()}
         >
             <FrontCard>
                 <Word>{term.toUpperCase()}</Word>
                 <SpeakerIcon
-                    speakerIcon={Icon}
+                    iconUrl={Icon}
                     onClick={(e) => {
-                        e.stopPropagation();
-                        setSpeechVoice(voices);
-                        playText(term);
+                        handleSpeakerClick(e, {
+                            wordToSpeech: term,
+                        });
                     }}
                 />
             </FrontCard>
             <BackCard reversed>
                 <Word reversed>{def.toUpperCase()}</Word>
                 <SpeakerIcon
-                    speakerIcon={Icon}
+                    iconUrl={Icon}
                     onClick={(e) => {
-                        e.stopPropagation();
-                        setSpeechVoice(
-                            voices,
-                            "Microsoft Paulina Desktop - Polish"
-                        );
-                        playText(def);
+                        handleSpeakerClick(e, {
+                            wordToSpeech: def,
+                            voiceName: "pl",
+                        });
                     }}
                 />
             </BackCard>

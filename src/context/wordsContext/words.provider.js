@@ -7,7 +7,7 @@ const WordsContextProvider = ({ children }) => {
         new SpeechSynthesisUtterance("")
     );
     const [speechSynth, setupSpeechSynth] = useState(speechSynthesis);
-    const [voices, setVoices] = useState([]);
+    const [synthesisVoices, setVoices] = useState([]);
 
     const setSpeechMessage = (message) => {
         speechSynth.cancel();
@@ -37,8 +37,10 @@ const WordsContextProvider = ({ children }) => {
         });
     };
 
-    const setSpeechVoice = (voices, name = "Google UK English Male") => {
-        const filteredVoice = voices.find((voice) => voice.name === name);
+    const setSpeechVoice = (voices, lang = "en-GB") => {
+        const filteredVoice = voices.find((voice) =>
+            voice.lang.toLowerCase().match(lang.toLowerCase())
+        );
 
         speechUtterance.voice = filteredVoice;
     };
@@ -48,16 +50,16 @@ const WordsContextProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (voices.length) setSpeechVoice(voices);
-    }, [voices]);
+        if (synthesisVoices.length) setSpeechVoice(synthesisVoices);
+    }, [synthesisVoices]);
 
     return (
         <WordsContext.Provider
             value={{
                 words: wordsData,
-                voices,
+                voices: synthesisVoices,
                 speechSynthesis: speechSynth,
-                speechUtterance: speechUtterance,
+                speechUtterance,
                 setSpeechVoice,
                 playText,
             }}

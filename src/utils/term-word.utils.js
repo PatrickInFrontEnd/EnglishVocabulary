@@ -1,7 +1,10 @@
 const fs = require("fs");
 
 const data = fs.readFileSync("./words.txt", { encoding: "utf-8" });
-if (!data) return;
+if (!data) {
+    console.error("Words data not found.");
+    return;
+}
 
 const splitted = data
     .split("\r\n")

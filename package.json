@@ -5,8 +5,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "webpack-dev-server --config webpack.dev.js --mode=development --progress --colors",
-        "build": "webpack --config webpack.prod.js"
+        "start": "webpack-dev-server --config webpack_config/webpack.dev.js --mode=development --progress --colors",
+        "build": "webpack --config webpack_config/webpack.prod.js"
     },
     "keywords": [],
     "author": "",

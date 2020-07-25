@@ -7,17 +7,20 @@ const flexCentered = css`
 `;
 
 const SpeakerIcon = styled.div`
-    background-image: url(${({ speakerIcon }) => speakerIcon ? speakerIcon : ""});
+    background-image: url(${({ iconUrl }) => (iconUrl ? iconUrl : "")});
     background-size: cover;
     background-repeat: no-repeat;
     backface-visibility: hidden;
-    transition: 0.5s;
-    opacity: 0;
     width: 30px;
     height: 30px;
     position: absolute;
     right: 20px;
     bottom: 20px;
+
+    @media screen and (min-width: 1280px) {
+        transition: 0.5s;
+        opacity: 0;
+    }
 `;
 
 const CardsContainer = styled.div`
@@ -28,18 +31,11 @@ const CardsContainer = styled.div`
     text-align: center;
     border-radius: 30px;
     cursor: pointer;
-    ${({ rotatedCards }) => (rotatedCards ? rotateCards() : "")};
+    ${({ rotated }) => (rotated ? rotateCards() : "")};
 
-    &:hover ${SpeakerIcon} {
-        opacity: 1;
-    }
-
-    @keyframes rotate {
-        from {
-            transform: rotateY(0deg);
-        }
-        to {
-            transform: rotateY(360deg);
+    @media screen and (min-width: 1280px) {
+        &:hover ${SpeakerIcon} {
+            opacity: 1;
         }
     }
 `;
@@ -86,8 +82,8 @@ const BackCard = styled.div`
     transform: translate(-50%, -50%) rotateY(180deg);
 `;
 
-function getWordColor(reversed) {
-    return reversed ? "#FFDD00" : "#FFFFFF";
+function getWordColor(isReversed) {
+    return isReversed ? "#FFDD00" : "#FFFFFF";
 }
 
 const Word = styled.p`
