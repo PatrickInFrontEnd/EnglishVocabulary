@@ -1,8 +1,13 @@
 import React from "react";
-import { FooterDirector, Footer } from "./footer.styles";
+import { FooterDirectorLink, Footer } from "./footer.styles";
 
 export default () => (
     <Footer>
-        <FooterDirector>Site made by Patryk Płuciennik</FooterDirector>
+        <FooterDirectorLink
+            href="https://github.com/PatrickInFrontEnd"
+            target="_blank"
+        >
+            Site made by Patryk Płuciennik
+        </FooterDirectorLink>
     </Footer>
 );

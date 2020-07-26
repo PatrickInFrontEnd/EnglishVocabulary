@@ -21,7 +21,12 @@ const Footer = styled.footer`
     }
 `;
 
-const FooterDirector = styled.p`
+const FooterDirectorLink = styled.a`
+    display: block;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
     font-size: 22px;
 
     @media screen and (max-width: 450px) {
@@ -29,4 +34,4 @@ const FooterDirector = styled.p`
     }
 `;
 
-export { Footer, FooterDirector };
+export { Footer, FooterDirectorLink };
